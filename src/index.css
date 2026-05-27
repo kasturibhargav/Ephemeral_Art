@@ -1,0 +1,151 @@
+:root {
+  --primary-font: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --bg-color: #0b0c10;
+  --panel-bg: rgba(255, 255, 255, 0.05);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --accent-color: #66fcf1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--primary-font);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow: hidden; /* Canvas will take full screen */
+  width: 100vw;
+  height: 100vh;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Background canvas container */
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Glassmorphism Dashboard */
+.dashboard-overlay {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 320px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.dashboard-overlay:hover {
+  transform: translateY(-5px);
+}
+
+.dashboard-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.dashboard-header p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.metric-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metric-icon {
+  color: var(--accent-color);
+  margin-bottom: 0.5rem;
+}
+
+.metric-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.last-updated {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Loading state */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-color);
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(102, 252, 241, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--accent-color);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
